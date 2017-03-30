@@ -195,7 +195,7 @@ gulp.task('test-one:e2e', function() {
   ])
   .pipe(mocha({
     reporter: 'spec',
-    timeout: 6000
+    timeout: 60000
   }));
 });
 

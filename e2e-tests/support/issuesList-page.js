@@ -46,6 +46,18 @@ class IssuesListPage extends BasePage {
     return new CallsPage(this.driver);
   }
 
+  followRandomIssue() {
+    const self = this;
+    return this.waitForElement(By.css('ul.issues-list'))
+      .getAttribute("childElementCount")
+      .then(count => {
+        const child = Math.floor(Math.random() * count) + 1;
+        const firstIssueSelector = By.css('ul.issues-list li:nth-child('+child+')');
+        this.waitForElement(firstIssueSelector).click();
+        return new CallsPage(this.driver);
+      });
+  }
+
   /**
    * Obtains the 'view more issues' link element
    *

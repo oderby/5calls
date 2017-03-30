@@ -107,4 +107,27 @@ test.describe('Should be able to navigate', function() {
     // Finally, go back to home page.
     goBackTo(makeHomePage);
   });
+
+  test.it.only("foo", function(done) {
+    for (var i=0; i<30; i++) {
+      // Navigate to inactive issues page.
+      page = new IssuesListPage(this.driver);
+      // page = page.followViewInactiveIssuesLink();
+
+      this.driver.navigate().refresh();
+
+      // Navigate to first inactive issue.
+      page.followRandomIssue();
+
+      this.driver.navigate().refresh();
+      // // Now go back to inactive issues page
+      // goBackTo(driver => {return new InactiveIssuesPage(driver);});
+
+      // Now go back to first active issue page.
+      goBackTo(driver => {return new HomePage(driver);});
+
+      this.driver.navigate().refresh();
+    }
+    done();
+  });
 });
